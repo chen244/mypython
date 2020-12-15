@@ -1,8 +1,18 @@
-if exists('g:loaded_mypython_autoload')
-    finish
-endif
-let g:loaded_mypython_autoload = 1
-map tt :sv<Enter><C-w><C-w>:terminal python<Enter>
-"map mm <C-w><C-w>
-map <C-a> yy:w<Enter><C-w>jpi<Enter>
-map <C-b> y<C-w>jpi<Enter>
+func! Console()
+    if &filetype == 'python'
+        exec "terminal ipython"
+    elseif &filetype == 'javascript'
+        exec "terminal node"
+    elseif &filetype == 'julia'
+        exec "terminal julia"
+    elseif &filetype == 'lua'
+        exec "terminal lua"
+    endif
+    exec "set nonumber"
+endfunc
+map tt :sv<Enter><C-w>j:call Console()<CR>i%autoindent<Enter>
+"map tt :sv<Enter><C-w>j:terminal ipython<Enter>:set nonumber<Enter>i%autoindent<Enter>
+map <C-s> yy:w<Enter><C-w>jpi<Enter>
+map <C-b> y:w<Enter><C-w>jpi<Enter>
+map <C-a> ggvG$y:w<Enter><c-w>jpi<Enter>
+"map <C-c> :vs<Enter>:w<Enter><C-w>l:set nonumber<Enter>:terminal python %<Enter>
