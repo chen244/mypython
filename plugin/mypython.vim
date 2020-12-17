@@ -7,6 +7,8 @@ func! Console()
         exec "terminal julia"
     elseif &filetype == 'lua'
         exec "terminal lua"
+    elseif &filetype == 'kotlin'
+        exec "terminal kotlinc"
     endif
     exec "set nonumber"
 endfunc
