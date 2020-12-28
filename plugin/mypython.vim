@@ -9,6 +9,8 @@ func! Console()
         exec "terminal lua"
     elseif &filetype == 'kotlin'
         exec "terminal kotlinc"
+    elseif &filetype == 'rust'
+        exec "terminal irb"
     endif
     exec "set nonumber"
 endfunc
